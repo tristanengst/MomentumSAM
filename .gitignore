@@ -3,3 +3,4 @@ __pycache__
 *.png*
 *cifar-10-batches*
 *wandb*
+code/wandb/*
