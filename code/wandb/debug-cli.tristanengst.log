@@ -39,3 +39,5 @@
 	wandb: online
 2022-12-03 05:46:50 INFO About to run command: /usr/bin/env python Train.py --adaptive=0 --lr=0.13649694195467968 --opt=sgd --rho=0 --wandb=online
 2022-12-03 05:46:55 INFO Running runs: ['xxs6tm3c']
+2022-12-03 07:01:28 ERROR 429 response executing GraphQL.
+2022-12-03 07:01:28 ERROR {"error":"rate limit exceeded"}

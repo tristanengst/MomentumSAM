@@ -57,7 +57,7 @@ if __name__ == "__main__":
         help="Optional suffix")
     args = P.parse_args()
     args.uid = wandb.util.generate_id()
-    args.num_workers = min(args.num_workers, max(1, os.cpu_count() - 4))
+    args.threads = min(args.threads, max(1, os.cpu_count() - 4))
     tqdm.write(str(args))
 
     run = wandb.init(project="MomentumSAM",
