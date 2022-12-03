@@ -2,3 +2,4 @@ __pycache__
 *.tar*
 *.png*
 *cifar-10-batches*
+*wandb*
