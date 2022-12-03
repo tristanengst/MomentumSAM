@@ -29,3 +29,13 @@
 	wandb: online
 2022-12-03 05:44:36 INFO About to run command: /usr/bin/env python Train.py --adaptive=0 --lr=0.13521607245735667 --opt=sgd --rho=0 --wandb=online
 2022-12-03 05:44:41 INFO Running runs: ['jws3nbr2']
+2022-12-03 05:46:49 INFO Running runs: []
+2022-12-03 05:46:50 INFO Agent received command: run
+2022-12-03 05:46:50 INFO Agent starting run with config:
+	adaptive: 0
+	lr: 0.13649694195467968
+	opt: sgd
+	rho: 0
+	wandb: online
+2022-12-03 05:46:50 INFO About to run command: /usr/bin/env python Train.py --adaptive=0 --lr=0.13649694195467968 --opt=sgd --rho=0 --wandb=online
+2022-12-03 05:46:55 INFO Running runs: ['xxs6tm3c']

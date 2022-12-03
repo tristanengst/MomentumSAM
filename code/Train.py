@@ -12,7 +12,7 @@ from utility.step_lr import StepLR
 from utility.bypass_bn import enable_running_stats, disable_running_stats
 
 import sys; sys.path.append("..")
-from sam import SAM
+from sam import SAM, MSAM
 
 import wandb
 
