@@ -1,0 +1,25 @@
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_setup.py:_flush():68] Configure stats pid to 98629
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_setup.py:_flush():68] Loading settings from /home/tristanengst/.config/wandb/settings
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_setup.py:_flush():68] Loading settings from /home/tristanengst/Development/MomentumSAM/code/wandb/settings
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_setup.py:_flush():68] Loading settings from environment variables: {'_require_service': 'True'}
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_setup.py:_flush():68] Inferring run settings from compute environment: {'program_relpath': 'code/Train.py', 'program': '/home/tristanengst/Development/MomentumSAM/code/Train.py'}
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_setup.py:_flush():68] Applying login settings: {'anonymous': 'allow'}
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_init.py:_log_setup():476] Logging user logs to /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053800-2dd1zu6m/logs/debug.log
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_init.py:_log_setup():477] Logging internal logs to /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053800-2dd1zu6m/logs/debug-internal.log
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_init.py:init():516] calling init triggers
+2022-12-03 05:38:00,184 INFO    MainThread:98629 [wandb_init.py:init():519] wandb.init called with sweep_config: {}
+config: {'wandb': 'online', 'opt': 'sam', 'adaptive': 0, 'gamma': 0.1, 'batch_size': 128, 'depth': 16, 'dropout': 0.0, 'epochs': 200, 'label_smoothing': 0.1, 'lr': 0.1, 'momentum': 0.9, 'threads': 20, 'rho': 0.05, 'weight_decay': 0.0005, 'width_factor': 8, 'suffix': None, 'uid': '2dd1zu6m'}
+2022-12-03 05:38:00,185 INFO    MainThread:98629 [wandb_init.py:init():569] starting backend
+2022-12-03 05:38:00,185 INFO    MainThread:98629 [wandb_init.py:init():573] setting up manager
+2022-12-03 05:38:00,186 INFO    MainThread:98629 [backend.py:_multiprocessing_setup():102] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2022-12-03 05:38:00,188 INFO    MainThread:98629 [wandb_init.py:init():580] backend started and connected
+2022-12-03 05:38:00,190 INFO    MainThread:98629 [wandb_init.py:init():658] updated telemetry
+2022-12-03 05:38:00,192 INFO    MainThread:98629 [wandb_init.py:init():693] communicating run to backend with 60 second timeout
+2022-12-03 05:38:00,424 INFO    MainThread:98629 [wandb_run.py:_on_init():2000] communicating current version
+2022-12-03 05:38:00,478 INFO    MainThread:98629 [wandb_run.py:_on_init():2004] got version response 
+2022-12-03 05:38:00,478 INFO    MainThread:98629 [wandb_init.py:init():728] starting run threads in backend
+2022-12-03 05:38:01,335 INFO    MainThread:98629 [wandb_run.py:_console_start():1980] atexit reg
+2022-12-03 05:38:01,335 INFO    MainThread:98629 [wandb_run.py:_redirect():1838] redirect: SettingsConsole.WRAP_RAW
+2022-12-03 05:38:01,335 INFO    MainThread:98629 [wandb_run.py:_redirect():1903] Wrapping output streams.
+2022-12-03 05:38:01,335 INFO    MainThread:98629 [wandb_run.py:_redirect():1925] Redirects installed.
+2022-12-03 05:38:01,335 INFO    MainThread:98629 [wandb_init.py:init():765] run started, returning control to user process

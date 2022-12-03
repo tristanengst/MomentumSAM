@@ -1,0 +1,218 @@
+{
+    "os": "Linux-5.15.0-53-generic-x86_64-with-glibc2.31",
+    "python": "3.10.8",
+    "heartbeatAt": "2022-12-03T13:36:32.192224",
+    "startedAt": "2022-12-03T13:36:31.813164",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--adaptive",
+        "0",
+        "--rho",
+        ".05",
+        "--opt",
+        "sam",
+        "--wandb",
+        "online"
+    ],
+    "state": "running",
+    "program": "/home/tristanengst/Development/MomentumSAM/code/Train.py",
+    "codePath": "code/Train.py",
+    "git": {
+        "remote": "https://github.com/tristanengst/MomentumSAM.git",
+        "commit": "d45d13b00069180e32689def6fc965e249ac9015"
+    },
+    "email": "tristanengst@gmail.com",
+    "root": "/home/tristanengst/Development/MomentumSAM",
+    "host": "cs-apex-01s",
+    "username": "tristanengst",
+    "executable": "/home/tristanengst/miniconda3/envs/py310VSAM/bin/python",
+    "cpu_count": 16,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2.2405000000000013,
+        "min": 2200.0,
+        "max": 3400.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.285,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3400.0
+        }
+    ],
+    "disk": {
+        "total": 915.3232879638672,
+        "used": 697.5981025695801
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 62.72575378417969
+    }
+}

@@ -1,0 +1,196 @@
+2022-12-03 05:35:40,245 INFO    StreamThr :93759 [internal.py:wandb_internal():88] W&B internal server running at pid: 93759, started at: 2022-12-03 05:35:40.244935
+2022-12-03 05:35:40,246 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: status
+2022-12-03 05:35:40,247 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: status
+2022-12-03 05:35:40,247 INFO    WriterThread:93759 [datastore.py:open_for_write():75] open: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/run-2ek8evbv.wandb
+2022-12-03 05:35:40,247 DEBUG   SenderThread:93759 [sender.py:send():303] send: header
+2022-12-03 05:35:40,247 DEBUG   SenderThread:93759 [sender.py:send():303] send: run
+2022-12-03 05:35:40,490 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: check_version
+2022-12-03 05:35:40,491 INFO    SenderThread:93759 [dir_watcher.py:__init__():216] watching files in: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files
+2022-12-03 05:35:40,492 INFO    SenderThread:93759 [sender.py:_start_run_threads():928] run started: 2ek8evbv with start time 1670074540.234932
+2022-12-03 05:35:40,492 DEBUG   SenderThread:93759 [sender.py:send():303] send: summary
+2022-12-03 05:35:40,492 INFO    SenderThread:93759 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-12-03 05:35:40,492 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: check_version
+2022-12-03 05:35:40,547 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: run_start
+2022-12-03 05:35:40,553 DEBUG   HandlerThread:93759 [system_info.py:__init__():31] System info init
+2022-12-03 05:35:40,553 DEBUG   HandlerThread:93759 [system_info.py:__init__():46] System info init done
+2022-12-03 05:35:40,553 INFO    HandlerThread:93759 [system_monitor.py:start():150] Starting system monitor
+2022-12-03 05:35:40,553 INFO    SystemMonitor:93759 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2022-12-03 05:35:40,554 INFO    HandlerThread:93759 [system_monitor.py:probe():168] Collecting system info
+2022-12-03 05:35:40,554 INFO    SystemMonitor:93759 [interfaces.py:start():168] Started cpu
+2022-12-03 05:35:40,554 INFO    SystemMonitor:93759 [interfaces.py:start():168] Started disk
+2022-12-03 05:35:40,554 INFO    SystemMonitor:93759 [interfaces.py:start():168] Started gpu
+2022-12-03 05:35:40,555 INFO    SystemMonitor:93759 [interfaces.py:start():168] Started memory
+2022-12-03 05:35:40,556 INFO    SystemMonitor:93759 [interfaces.py:start():168] Started network
+2022-12-03 05:35:40,579 DEBUG   HandlerThread:93759 [system_info.py:probe():195] Probing system
+2022-12-03 05:35:40,580 DEBUG   HandlerThread:93759 [system_info.py:_probe_git():180] Probing git
+2022-12-03 05:35:40,583 DEBUG   HandlerThread:93759 [system_info.py:_probe_git():188] Probing git done
+2022-12-03 05:35:40,583 DEBUG   HandlerThread:93759 [system_info.py:probe():241] Probing system done
+2022-12-03 05:35:40,583 DEBUG   HandlerThread:93759 [system_monitor.py:probe():177] {'os': 'Linux-5.15.0-53-generic-x86_64-with-glibc2.31', 'python': '3.10.8', 'heartbeatAt': '2022-12-03T13:35:40.579423', 'startedAt': '2022-12-03T13:35:40.229457', 'docker': None, 'cuda': None, 'args': ('--adaptive', '0', '--rho', '.05', '--opt', 'sam', '--wandb', 'online'), 'state': 'running', 'program': '/home/tristanengst/Development/MomentumSAM/code/Train.py', 'codePath': 'code/Train.py', 'git': {'remote': 'https://github.com/tristanengst/MomentumSAM.git', 'commit': 'd45d13b00069180e32689def6fc965e249ac9015'}, 'email': 'tristanengst@gmail.com', 'root': '/home/tristanengst/Development/MomentumSAM', 'host': 'cs-apex-01s', 'username': 'tristanengst', 'executable': '/home/tristanengst/miniconda3/envs/py310VSAM/bin/python', 'cpu_count': 16, 'cpu_count_logical': 32, 'cpu_freq': {'current': 2.387312500000001, 'min': 2200.0, 'max': 3400.0}, 'cpu_freq_per_core': [{'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 1.456, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 3.4, 'min': 2200.0, 'max': 3400.0}, {'current': 3.4, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 4.197, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.307, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}, {'current': 3.4, 'min': 2200.0, 'max': 3400.0}, {'current': 2.2, 'min': 2200.0, 'max': 3400.0}], 'disk': {'total': 915.3232879638672, 'used': 697.597900390625}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 2, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}, {'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 62.72575378417969}}
+2022-12-03 05:35:40,583 INFO    HandlerThread:93759 [system_monitor.py:probe():178] Finished collecting system info
+2022-12-03 05:35:40,583 INFO    HandlerThread:93759 [system_monitor.py:probe():181] Publishing system info
+2022-12-03 05:35:40,583 DEBUG   HandlerThread:93759 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2022-12-03 05:35:40,583 DEBUG   HandlerThread:93759 [system_info.py:_save_pip():67] Saving pip packages done
+2022-12-03 05:35:40,583 DEBUG   HandlerThread:93759 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2022-12-03 05:35:41,409 DEBUG   HandlerThread:93759 [system_info.py:_save_conda():86] Saving conda packages done
+2022-12-03 05:35:41,409 DEBUG   HandlerThread:93759 [system_info.py:_save_code():89] Saving code
+2022-12-03 05:35:41,410 DEBUG   HandlerThread:93759 [system_info.py:_save_code():110] Saving code done
+2022-12-03 05:35:41,410 DEBUG   HandlerThread:93759 [system_info.py:_save_patches():127] Saving git patches
+2022-12-03 05:35:41,420 DEBUG   HandlerThread:93759 [system_info.py:_save_patches():169] Saving git patches done
+2022-12-03 05:35:41,421 INFO    HandlerThread:93759 [system_monitor.py:probe():183] Finished publishing system info
+2022-12-03 05:35:41,430 DEBUG   SenderThread:93759 [sender.py:send():303] send: files
+2022-12-03 05:35:41,430 INFO    SenderThread:93759 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2022-12-03 05:35:41,431 INFO    SenderThread:93759 [sender.py:_save_file():1171] saving file code/code/Train.py with policy now
+2022-12-03 05:35:41,431 INFO    SenderThread:93759 [sender.py:_save_file():1171] saving file diff.patch with policy now
+2022-12-03 05:35:41,436 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-03 05:35:41,437 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: stop_status
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/code/code/Train.py
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/diff.patch
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/wandb-summary.json
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/wandb-metadata.json
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/conda-environment.yaml
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/requirements.txt
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/code
+2022-12-03 05:35:41,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/code/code
+2022-12-03 05:35:41,523 DEBUG   SenderThread:93759 [sender.py:send():303] send: telemetry
+2022-12-03 05:35:41,771 INFO    Thread-18 :93759 [upload_job.py:push():143] Uploaded file /tmp/tmp_7vk4l50wandb/39ml0kiy-diff.patch
+2022-12-03 05:35:41,775 INFO    Thread-16 :93759 [upload_job.py:push():143] Uploaded file /tmp/tmp_7vk4l50wandb/vhg7v29n-wandb-metadata.json
+2022-12-03 05:35:41,794 INFO    Thread-17 :93759 [upload_job.py:push():143] Uploaded file /tmp/tmp_7vk4l50wandb/21irffat-code/code/Train.py
+2022-12-03 05:35:42,492 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_created():275] file/dir created: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:35:44,493 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:35:50,494 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:35:54,495 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:35:56,496 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:35:56,524 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-03 05:35:56,524 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: stop_status
+2022-12-03 05:35:58,497 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:36:00,497 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:36:02,498 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:36:04,498 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:36:04,682 DEBUG   SenderThread:93759 [sender.py:send():303] send: exit
+2022-12-03 05:36:04,682 INFO    SenderThread:93759 [sender.py:send_exit():442] handling exit code: 255
+2022-12-03 05:36:04,683 INFO    SenderThread:93759 [sender.py:send_exit():444] handling runtime: 24
+2022-12-03 05:36:04,683 INFO    SenderThread:93759 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-12-03 05:36:04,683 INFO    SenderThread:93759 [sender.py:send_exit():450] send defer
+2022-12-03 05:36:04,683 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:04,683 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 0
+2022-12-03 05:36:04,683 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:04,683 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 0
+2022-12-03 05:36:04,683 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 1
+2022-12-03 05:36:04,683 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:04,683 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 1
+2022-12-03 05:36:04,683 INFO    HandlerThread:93759 [system_monitor.py:finish():160] Stopping system monitor
+2022-12-03 05:36:04,684 DEBUG   SystemMonitor:93759 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2022-12-03 05:36:04,684 INFO    HandlerThread:93759 [interfaces.py:finish():173] Joined cpu
+2022-12-03 05:36:04,684 INFO    HandlerThread:93759 [interfaces.py:finish():173] Joined disk
+2022-12-03 05:36:04,684 DEBUG   SystemMonitor:93759 [system_monitor.py:_start():137] Finished system metrics aggregation loop
+2022-12-03 05:36:04,684 DEBUG   SystemMonitor:93759 [system_monitor.py:_start():141] Publishing last batch of metrics
+2022-12-03 05:36:04,748 INFO    HandlerThread:93759 [interfaces.py:finish():173] Joined gpu
+2022-12-03 05:36:04,748 INFO    HandlerThread:93759 [interfaces.py:finish():173] Joined memory
+2022-12-03 05:36:04,748 INFO    HandlerThread:93759 [interfaces.py:finish():173] Joined network
+2022-12-03 05:36:04,748 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:04,748 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 1
+2022-12-03 05:36:04,748 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 2
+2022-12-03 05:36:04,748 DEBUG   SenderThread:93759 [sender.py:send():303] send: stats
+2022-12-03 05:36:04,748 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:04,748 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 2
+2022-12-03 05:36:04,748 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:04,748 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 2
+2022-12-03 05:36:04,748 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 3
+2022-12-03 05:36:04,749 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:04,749 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 3
+2022-12-03 05:36:04,749 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:04,749 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 3
+2022-12-03 05:36:04,749 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 4
+2022-12-03 05:36:04,749 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:04,749 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 4
+2022-12-03 05:36:04,749 DEBUG   SenderThread:93759 [sender.py:send():303] send: summary
+2022-12-03 05:36:04,749 INFO    SenderThread:93759 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-12-03 05:36:04,749 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:04,749 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 4
+2022-12-03 05:36:04,749 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 5
+2022-12-03 05:36:04,749 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:04,749 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 5
+2022-12-03 05:36:04,749 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:04,749 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 5
+2022-12-03 05:36:05,238 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 6
+2022-12-03 05:36:05,238 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:05,239 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 6
+2022-12-03 05:36:05,239 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:05,239 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 6
+2022-12-03 05:36:05,499 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/wandb-summary.json
+2022-12-03 05:36:05,499 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/config.yaml
+2022-12-03 05:36:05,683 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: poll_exit
+2022-12-03 05:36:06,500 INFO    Thread-13 :93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:36:06,657 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 7
+2022-12-03 05:36:06,657 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: poll_exit
+2022-12-03 05:36:06,658 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:06,658 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 7
+2022-12-03 05:36:06,658 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:06,658 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 7
+2022-12-03 05:36:06,658 INFO    SenderThread:93759 [dir_watcher.py:finish():362] shutting down directory watcher
+2022-12-03 05:36:06,683 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: poll_exit
+2022-12-03 05:36:07,501 INFO    SenderThread:93759 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:36:07,501 INFO    SenderThread:93759 [dir_watcher.py:finish():392] scan: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files
+2022-12-03 05:36:07,501 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/diff.patch diff.patch
+2022-12-03 05:36:07,501 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/wandb-metadata.json wandb-metadata.json
+2022-12-03 05:36:07,501 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log output.log
+2022-12-03 05:36:07,502 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/wandb-summary.json wandb-summary.json
+2022-12-03 05:36:07,502 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/conda-environment.yaml conda-environment.yaml
+2022-12-03 05:36:07,502 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/config.yaml config.yaml
+2022-12-03 05:36:07,504 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/requirements.txt requirements.txt
+2022-12-03 05:36:07,514 INFO    SenderThread:93759 [dir_watcher.py:finish():406] scan save: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/code/code/Train.py code/code/Train.py
+2022-12-03 05:36:07,514 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 8
+2022-12-03 05:36:07,514 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: poll_exit
+2022-12-03 05:36:07,514 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:07,515 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 8
+2022-12-03 05:36:07,515 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:07,515 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 8
+2022-12-03 05:36:07,515 INFO    SenderThread:93759 [file_pusher.py:finish():168] shutting down file pusher
+2022-12-03 05:36:07,684 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: poll_exit
+2022-12-03 05:36:07,684 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: poll_exit
+2022-12-03 05:36:07,866 INFO    Thread-19 :93759 [upload_job.py:push():143] Uploaded file /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/output.log
+2022-12-03 05:36:07,879 INFO    Thread-20 :93759 [upload_job.py:push():143] Uploaded file /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/wandb-summary.json
+2022-12-03 05:36:07,880 INFO    Thread-21 :93759 [upload_job.py:push():143] Uploaded file /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/conda-environment.yaml
+2022-12-03 05:36:07,918 INFO    Thread-23 :93759 [upload_job.py:push():143] Uploaded file /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/requirements.txt
+2022-12-03 05:36:07,924 INFO    Thread-22 :93759 [upload_job.py:push():143] Uploaded file /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/files/config.yaml
+2022-12-03 05:36:08,125 INFO    Thread-12 (_thread_body):93759 [sender.py:transition_state():463] send defer: 9
+2022-12-03 05:36:08,125 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:08,126 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 9
+2022-12-03 05:36:08,126 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:08,126 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 9
+2022-12-03 05:36:08,126 INFO    SenderThread:93759 [file_pusher.py:join():173] waiting for file pusher
+2022-12-03 05:36:08,126 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 10
+2022-12-03 05:36:08,126 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:08,126 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 10
+2022-12-03 05:36:08,126 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:08,126 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 10
+2022-12-03 05:36:08,214 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 11
+2022-12-03 05:36:08,215 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:08,215 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 11
+2022-12-03 05:36:08,215 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:08,215 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 11
+2022-12-03 05:36:08,215 INFO    SenderThread:93759 [sender.py:transition_state():463] send defer: 12
+2022-12-03 05:36:08,215 DEBUG   SenderThread:93759 [sender.py:send():303] send: final
+2022-12-03 05:36:08,215 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: defer
+2022-12-03 05:36:08,216 DEBUG   SenderThread:93759 [sender.py:send():303] send: footer
+2022-12-03 05:36:08,216 INFO    HandlerThread:93759 [handler.py:handle_request_defer():162] handle defer: 12
+2022-12-03 05:36:08,216 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: defer
+2022-12-03 05:36:08,216 INFO    SenderThread:93759 [sender.py:send_request_defer():459] handle sender defer: 12
+2022-12-03 05:36:08,217 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: poll_exit
+2022-12-03 05:36:08,217 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: poll_exit
+2022-12-03 05:36:08,217 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: poll_exit
+2022-12-03 05:36:08,217 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: poll_exit
+2022-12-03 05:36:08,218 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: server_info
+2022-12-03 05:36:08,218 DEBUG   SenderThread:93759 [sender.py:send_request():317] send_request: server_info
+2022-12-03 05:36:08,220 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: get_summary
+2022-12-03 05:36:08,221 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: sampled_history
+2022-12-03 05:36:08,383 INFO    MainThread:93759 [wandb_run.py:_footer_history_summary_info():3377] rendering history
+2022-12-03 05:36:08,383 INFO    MainThread:93759 [wandb_run.py:_footer_history_summary_info():3409] rendering summary
+2022-12-03 05:36:08,383 INFO    MainThread:93759 [wandb_run.py:_footer_sync_info():3333] logging synced files
+2022-12-03 05:36:08,384 DEBUG   HandlerThread:93759 [handler.py:handle_request():139] handle_request: shutdown
+2022-12-03 05:36:08,384 INFO    HandlerThread:93759 [handler.py:finish():814] shutting down handler
+2022-12-03 05:36:09,216 INFO    WriterThread:93759 [datastore.py:close():279] close: /home/tristanengst/Development/MomentumSAM/code/wandb/run-20221203_053540-2ek8evbv/run-2ek8evbv.wandb
+2022-12-03 05:36:09,383 INFO    SenderThread:93759 [sender.py:finish():1331] shutting down sender
+2022-12-03 05:36:09,383 INFO    SenderThread:93759 [file_pusher.py:finish():168] shutting down file pusher
+2022-12-03 05:36:09,383 INFO    SenderThread:93759 [file_pusher.py:join():173] waiting for file pusher
+2022-12-03 05:36:09,386 INFO    MainThread:93759 [internal.py:handle_exit():78] Internal process exited

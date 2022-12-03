@@ -1,0 +1,25 @@
+name: sgd
+program: Train.py
+project: MomentumSAM
+method: bayes
+metric:
+  name: acc/te
+  goal: maximize
+early_terminate:
+  type: hyperband
+  min_iter: 4
+parameters:
+  wandb:
+    value: online
+  opt:
+    value: sgd
+  adaptive:
+    value: 0
+  lr:
+    distribution: log_uniform_values
+    min: 0.001
+    max: 0.5
+  mm:
+    value: 0.9
+  rho:
+    value: 0
