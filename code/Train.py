@@ -75,7 +75,7 @@ if __name__ == "__main__":
     base_optimizer = torch.optim.SGD
 
     if args.opt == "sgd":
-        optimizer = SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.opt == "sam":
         optimizer = SAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=args.adaptive, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.opt == "msam":

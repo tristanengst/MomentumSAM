@@ -1,0 +1,31 @@
+2022-12-03 05:43:08 INFO Running runs: []
+2022-12-03 05:43:08 INFO Agent received command: run
+2022-12-03 05:43:08 INFO Agent starting run with config:
+	adaptive: 0
+	lr: 0.1108730685318545
+	mm: 0.9
+	opt: sgd
+	rho: 0
+	wandb: online
+2022-12-03 05:43:08 INFO About to run command: /usr/bin/env python Train.py --adaptive=0 --lr=0.1108730685318545 --mm=0.9 --opt=sgd --rho=0 --wandb=online
+2022-12-03 05:43:50 INFO Running runs: []
+2022-12-03 05:43:51 INFO Agent received command: run
+2022-12-03 05:43:51 INFO Agent starting run with config:
+	adaptive: 0
+	lr: 0.0053705740819096496
+	opt: sgd
+	rho: 0
+	wandb: online
+2022-12-03 05:43:51 INFO About to run command: /usr/bin/env python Train.py --adaptive=0 --lr=0.0053705740819096496 --opt=sgd --rho=0 --wandb=online
+2022-12-03 05:43:56 INFO Running runs: ['847p2suc']
+2022-12-03 05:44:06 INFO Cleaning up finished run: 847p2suc
+2022-12-03 05:44:36 INFO Running runs: []
+2022-12-03 05:44:36 INFO Agent received command: run
+2022-12-03 05:44:36 INFO Agent starting run with config:
+	adaptive: 0
+	lr: 0.13521607245735667
+	opt: sgd
+	rho: 0
+	wandb: online
+2022-12-03 05:44:36 INFO About to run command: /usr/bin/env python Train.py --adaptive=0 --lr=0.13521607245735667 --opt=sgd --rho=0 --wandb=online
+2022-12-03 05:44:41 INFO Running runs: ['jws3nbr2']

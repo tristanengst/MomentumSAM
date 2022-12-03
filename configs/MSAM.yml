@@ -19,8 +19,6 @@ parameters:
     distribution: log_uniform_values
     min: 0.001
     max: 0.5
-  mm:
-    value: 0.9
   rho:
     distribution: log_uniform_values
     min: 0.001
