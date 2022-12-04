@@ -3,4 +3,7 @@ __pycache__
 *.png*
 *cifar-10-batches*
 *wandb*
-code/wandb/*
+*wandb
+code/wandb/debug-cli.tristanengst.log
+code/wandb/
+code/w*
