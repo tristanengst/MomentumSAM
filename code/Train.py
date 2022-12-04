@@ -60,7 +60,6 @@ if __name__ == "__main__":
     args.threads = min(args.threads, max(1, os.cpu_count() - 4))
     tqdm.write(str(args))
 
-    tqdm.write()
     run = wandb.init(project="MomentumSAM",
         anonymous="allow",
         config=args,
