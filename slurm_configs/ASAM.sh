@@ -10,7 +10,7 @@
 #SBATCH --cpus-per-task=12              # Number of cores per task.
 #SBATCH --gres=gpu:v100l:1
 
-#SBATCH --job-name=amsam
+#SBATCH --job-name=asam
 #SBATCH --output=job_results/_%x_%a.txt
 
 # Below sets the email notification, swap to your email to receive notifications
