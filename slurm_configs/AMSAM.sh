@@ -36,7 +36,7 @@ conda activate py310MSAM
 export PYTHONUNBUFFERED=1
 export MKL_SERVICE_FORCE_INTEL=1
 
-cd projects/def-keli/tme3/MomentumSAM/code
+cd ~/projects/def-keli/tme3/MomentumSAM/code
 wandb agent --count 1 tristanengst/MomentumSAM/ec0jfsuf
 
 # Print completion time.
