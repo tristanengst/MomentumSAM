@@ -45,7 +45,7 @@ if __name__ == "__main__":
         help="Base learning rate at the start of the training.")
     P.add_argument("--momentum", default=0.9, type=float,
         help="SGD Momentum.")
-    P.add_argument("--threads", default=20, type=int,
+    P.add_argument("--threads", default=12, type=int,
         help="Number of CPU threads for dataloaders.")
     P.add_argument("--rho", default=.05, type=float,
         help="Rho parameter for SAM.")
@@ -60,6 +60,7 @@ if __name__ == "__main__":
     args.threads = min(args.threads, max(1, os.cpu_count() - 4))
     tqdm.write(str(args))
 
+    tqdm.write()
     run = wandb.init(project="MomentumSAM",
         anonymous="allow",
         config=args,
