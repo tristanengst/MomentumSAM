@@ -3,12 +3,12 @@
 # The SBATCH directives must appear before any executable line in this script.
 
 #SBATCH --array=0-100%5
-#SBATCH --time=04:00:00               # Time: D-H:M:S
+#SBATCH --time=0-4:00:00               # Time: D-H:M:S
 #SBATCH --account=def-keli              # Account: def-keli/rrg-keli
 #SBATCH --mem=120G                       # Memory in total
 #SBATCH --nodes=1                       # Number of nodes requested.
 #SBATCH --cpus-per-task=12              # Number of cores per task.
-#SBATCH --gres=gpu:v1001l:1
+#SBATCH --gres=gpu:v100l:1
 
 #SBATCH --job-name=amsam
 #SBATCH --output=job_results/_%x_%a.txt
@@ -36,7 +36,8 @@ conda activate py310MSAM
 export PYTHONUNBUFFERED=1
 export MKL_SERVICE_FORCE_INTEL=1
 
- wandb agent --count 1 tristanengst/MomentumSAM/ec0jfsuf
+cd projects/def-keli/tme3/MomentumSAM/code
+wandb agent --count 1 tristanengst/MomentumSAM/ec0jfsuf
 
 # Print completion time.
 date
