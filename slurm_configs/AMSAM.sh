@@ -30,7 +30,8 @@ date
 echo "Starting job number $SLURM_ARRAY_TASK_ID"
 
 source ~/.bashrc
-conda activate py310MSAM
+module load python/3.10
+source ~/virtual_envs/py310MSAM/bin/activate
 
 # Python will buffer output of your script unless you set this.
 export PYTHONUNBUFFERED=1
