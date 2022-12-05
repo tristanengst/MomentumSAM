@@ -1,0 +1,18 @@
+name: msam_bs4
+program: Train.py
+project: MomentumSAM
+parameters:
+  wandb:
+    value: online
+  opt:
+    value: msam
+  lr:
+    value: .1
+  rho:
+    values: [.05, .02, .1]
+  seed:
+    values: [42, 666, 1111, 1701]
+  gamma:
+    values: [.25, .5, .75]
+  batch_size:
+    value: 4

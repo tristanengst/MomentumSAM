@@ -1,0 +1,17 @@
+name: sam_bs4
+program: Train.py
+project: MomentumSAM
+method: grid
+parameters:
+  wandb:
+    value: online
+  opt:
+    value: sam
+  lr:
+    value: .1
+  rho:
+    values: [.05, .02, .1]
+  seed:
+    values: [42, 666, 1111, 1701]
+  batch_size:
+    value: 4
