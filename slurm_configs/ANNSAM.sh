@@ -38,7 +38,7 @@ export PYTHONUNBUFFERED=1
 export MKL_SERVICE_FORCE_INTEL=1
 
 cd ~/projects/def-keli/tme3/MomentumSAM/code
-wandb agent --count 1 tristanengst/MomentumSAM/4ub6prux
+wandb agent --count 1 tristanengst/MomentumSAM/la5ljov4
 
 # Print completion time.
 date
