@@ -25,7 +25,7 @@ if __name__ == "__main__":
     P = argparse.ArgumentParser()
     P.add_argument("--wandb", default="disabled", choices=["disabled", "online"],
         help="WandB usage")
-    P.add_argument("--opt", choices=["sgd", "sam", "msam", "nnsam", "annsam"], required=True,
+    P.add_argument("--opt", choices=["sgd", "asam", "sam", "msam", "nnsam", "annsam"], required=True,
         help="optimizer")
     P.add_argument("--adaptive", default=0, type=int, choices=[0, 1],
         help="True if you want to use the Adaptive SAM.")
