@@ -62,6 +62,12 @@ if __name__ == "__main__":
     args.threads = min(args.threads, max(1, os.cpu_count() - 4))
     tqdm.write(str(args))
 
+    # Set adaptive based on optimizer name
+    if args.opt.startswith("a"):
+        args.adaptive = 1
+    else:
+        args.adaptive = 0
+
     run = wandb.init(project="MomentumSAM",
         anonymous="allow",
         config=args,
@@ -81,14 +87,16 @@ if __name__ == "__main__":
     if args.opt == "sgd":
         optimizer = SAM(model.parameters(), base_optimizer, rho=0, adaptive=args.adaptive, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.opt == "sam":
-        optimizer = SAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=args.adaptive, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = SAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=0, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    elif args.opt == "asam":
+        optimizer = SAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=1, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.opt == "msam":
-        optimizer = MSAM(model.parameters(), base_optimizer, gamma=args.gamma, rho=args.rho, adaptive=args.adaptive, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = MSAM(model.parameters(), base_optimizer, gamma=args.gamma, rho=args.rho, adaptive=0, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    elif args.opt == "amsam":
+        optimizer = MSAM(model.parameters(), base_optimizer, gamma=args.gamma, rho=args.rho, adaptive=1, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.opt == "nnsam":
-        tqdm.write(f"Overrriding --adaptive and forcing it to zero")
         optimizer = NNSAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=0, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.opt == "annsam":
-        tqdm.write(f"Overrriding --adaptive and forcing it to one")
         optimizer = NNSAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=1, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     scheduler = StepLR(optimizer, args.lr, args.epochs)
 

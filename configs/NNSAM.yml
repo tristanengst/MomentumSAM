@@ -5,8 +5,6 @@ method: grid
 parameters:
   wandb:
     value: online
-  adaptive:
-    value: 0
   opt:
     value: nnsam
   lr:

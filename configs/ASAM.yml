@@ -1,25 +1,15 @@
 name: asam
 program: Train.py
 project: MomentumSAM
-method: bayes
-metric:
-  name: acc/te
-  goal: maximize
-early_terminate:
-  type: hyperband
-  min_iter: 4
+method: grid
 parameters:
   wandb:
     value: online
-  adaptive:
-    value: 1
   opt:
-    value: sam
+    value: asam
   lr:
-    distribution: log_uniform_values
-    min: 0.001
-    max: 0.5
+    value: .1
   rho:
-    distribution: log_uniform_values
-    min: 0.001
-    max: 5.0
+    values: [.02, .05, .1, .2, .5, 1., 2., 3.]
+  seed:
+    values: [42, 666, 1111, 1701, 2012]
