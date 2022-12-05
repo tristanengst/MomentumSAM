@@ -1,0 +1,17 @@
+name: nnsam
+program: Train.py
+project: MomentumSAM
+method: grid
+parameters:
+  wandb:
+    value: online
+  adaptive:
+    value: 0
+  opt:
+    value: nnsam
+  lr:
+    value: .1
+  rho:
+    values: [.01, .02, .05, .1, .2, .5, 1., 2.]
+  seed:
+    values: [42, 666, 1111, 1701, 2012]

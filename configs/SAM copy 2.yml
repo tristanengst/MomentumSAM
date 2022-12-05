@@ -1,0 +1,25 @@
+name: sam
+program: Train.py
+project: MomentumSAM
+method: bayes
+metric:
+  name: acc/te
+  goal: maximize
+early_terminate:
+  type: hyperband
+  min_iter: 4
+parameters:
+  wandb:
+    value: online
+  adaptive:
+    value: 0
+  opt:
+    value: sam
+  lr:
+    distribution: log_uniform_values
+    min: 0.001
+    max: 0.5
+  rho:
+    distribution: log_uniform_values
+    min: 0.001
+    max: 5.0

@@ -13,7 +13,7 @@ from utility.step_lr import StepLR
 from utility.bypass_bn import enable_running_stats, disable_running_stats
 
 import sys; sys.path.append("..")
-from sam import SAM, MSAM
+from sam import SAM, MSAM, NNSAM
 
 import wandb
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     P = argparse.ArgumentParser()
     P.add_argument("--wandb", default="disabled", choices=["disabled", "online"],
         help="WandB usage")
-    P.add_argument("--opt", choices=["sgd", "sam", "msam"], required=True,
+    P.add_argument("--opt", choices=["sgd", "sam", "msam", "nnsam"], required=True,
         help="optimizer")
     P.add_argument("--adaptive", default=0, type=int, choices=[0, 1],
         help="True if you want to use the Adaptive SAM.")
@@ -55,6 +55,8 @@ if __name__ == "__main__":
         help="How many times wider compared to normal ResNet.")
     P.add_argument("--suffix", default=None, type=str,
         help="Optional suffix")
+    P.add_argument("--seed", default=12, type=int,
+        help="Number of CPU threads for dataloaders.")
     args = P.parse_args()
     args.uid = wandb.util.generate_id()
     args.threads = min(args.threads, max(1, os.cpu_count() - 4))
@@ -67,7 +69,7 @@ if __name__ == "__main__":
         name=get_name(args),
         mode=args.wandb)
 
-    initialize(args, seed=42)
+    initialize(args, seed=args.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     dataset = Cifar(args.batch_size, args.threads)
@@ -82,6 +84,12 @@ if __name__ == "__main__":
         optimizer = SAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=args.adaptive, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.opt == "msam":
         optimizer = MSAM(model.parameters(), base_optimizer, gamma=args.gamma, rho=args.rho, adaptive=args.adaptive, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    elif args.opt == "nnsam":
+        tqdm.write(f"Overrriding --adaptive and forcing it to zero")
+        optimizer = NNSAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=0, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    elif args.opt == "annsam":
+        tqdm.write(f"Overrriding --adaptive and forcing it to one")
+        optimizer = NNSAM(model.parameters(), base_optimizer, rho=args.rho, adaptive=1, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     scheduler = StepLR(optimizer, args.lr, args.epochs)
 
     for epoch in range(args.epochs):
