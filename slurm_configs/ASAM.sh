@@ -2,7 +2,7 @@
 
 # The SBATCH directives must appear before any executable line in this script.
 
-#SBATCH --array=0-100%5
+#SBATCH --array=0-39%20
 #SBATCH --time=0-5:0:00               # Time: D-H:M:S
 #SBATCH --account=def-keli              # Account: def-keli/rrg-keli
 #SBATCH --mem=120G                       # Memory in total
@@ -38,7 +38,7 @@ export PYTHONUNBUFFERED=1
 export MKL_SERVICE_FORCE_INTEL=1
 
 cd ~/projects/def-keli/tme3/MomentumSAM/code
-wandb agent --count 1 tristanengst/MomentumSAM/s1qitd7j
+wandb agent --count 1 tristanengst/MomentumSAM/ruv29ia6
 
 # Print completion time.
 date
