@@ -15,3 +15,5 @@ parameters:
     values: [42, 666, 1111, 1701]
   batch_size:
     value: 4
+  epochs:
+    value: 6

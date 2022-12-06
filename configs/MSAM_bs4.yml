@@ -1,6 +1,7 @@
 name: msam_bs4
 program: Train.py
 project: MomentumSAM
+method: grid
 parameters:
   wandb:
     value: online
@@ -16,3 +17,5 @@ parameters:
     values: [.25, .5, .75]
   batch_size:
     value: 4
+  epochs:
+    value: 6
