@@ -75,6 +75,7 @@ if __name__ == "__main__":
     args.uid = wandb.util.generate_id()
     args.threads = min(args.threads, max(1, os.cpu_count() - 4))
     args.adaptive = int(args.opt.startswith("a"))
+    args.root = args.root if os.path.exists(args.root) else "./data"
     tqdm.write(f"---------\n{args}\n---------")
 
     run = wandb.init(project="NNSAM",
