@@ -91,7 +91,7 @@ if __name__ == "__main__":
         seed=args.seed,
         num_folds=args.num_folds,
         threads=args.threads,
-        root=root)
+        root=args.root)
 
     log = Log(log_each=10)
     model = WideResNet(args.depth, args.width_factor, args.dropout,
