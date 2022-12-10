@@ -71,8 +71,8 @@ class Cifar:
             random.seed(seed)
 
             # Splice the datasets
-            self.fold_idx = seed % num_folds
-            num_val_idxs = len(self.train_set) // num_folds
+            self.fold_idx = int(seed % num_folds)
+            num_val_idxs = int(len(self.train_set) // num_folds)
             self.idxs_val = all_idxs[num_val_idxs * self.fold_idx:num_val_idxs * (self.fold_idx+1)]
             idxs_val_set = set(self.idxs_val)
             self.idxs_tr = [idx for idx in all_idxs if not idx in idxs_val_set]
