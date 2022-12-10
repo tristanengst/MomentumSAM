@@ -11,7 +11,12 @@ conda install pytorch torchvision pytorch-cuda=11.7 -c pytorch -c nvidia
 conda install -c conda-forge tqdm wandb
 ```
 
-# Training
+# Training on Quadratics
+```
+python TrainQuadratic.py
+```
+
+# Training on the CIFAR-10
 ```
 python Train.py --opt OPTIMIZER
 ```
