@@ -1,6 +1,8 @@
 # NoNormSAM
-*Authors*: Mehran Aghabozorgi, Tristan Engst, Oliver Fujiki, Yanshu Zhang
+**Authors**: Mehran Aghabozorgi, Tristan Engst, Oliver Fujiki, Yanshu Zhang
+
 *Link to paper*: [...]()
+
 Many thanks to David Samuel for creating the [repo](https://github.com/davda54/sam) we base ours on.
 
 # Setup
