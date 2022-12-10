@@ -38,7 +38,7 @@ export PYTHONUNBUFFERED=1
 export MKL_SERVICE_FORCE_INTEL=1
 
 cd ~/projects/def-keli/tme3/NNSAM
-wandb agent --count 1 tristanengst/NNSAM/8wqzrytn
+wandb agent --count 1 tristanengst/NNSAM/4hlas9x5
 
 # Print completion time.
 date
