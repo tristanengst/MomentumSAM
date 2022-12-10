@@ -1,6 +1,6 @@
 name: sgd
 program: Train.py
-project: MomentumSAM
+project: NNSAM
 method: grid
 parameters:
   wandb:
