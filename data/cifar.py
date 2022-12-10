@@ -9,7 +9,7 @@ from utility.cutout import Cutout
 
 
 class Cifar:
-    def __init__(self, batch_size=128, seed=0, num_folds=0, threads=12):
+    def __init__(self, batch_size=128, seed=0, num_folds=0, threads=12, root="./data"):
         mean, std = self._get_statistics()
 
         train_transform = transforms.Compose([
@@ -24,15 +24,15 @@ class Cifar:
             transforms.Normalize(mean, std)
         ])
 
-        self.train_set = torchvision.datasets.CIFAR10(root='./data',
+        self.train_set = torchvision.datasets.CIFAR10(root=root,
             train=True,
             download=True,
             transform=train_transform)
-        self.val_set = torchvision.datasets.CIFAR10(root='./data',
+        self.val_set = torchvision.datasets.CIFAR10(root=root,
             train=True,
             download=True,
             transform=test_transform)
-        self.test_set = torchvision.datasets.CIFAR10(root='./data',
+        self.test_set = torchvision.datasets.CIFAR10(root=root,
             train=False,
             download=True,
             transform=test_transform)
@@ -104,8 +104,8 @@ class Cifar:
 
     def __str__(self): return f"{self.__class__.__name__} [fold_index={self.fold_idx} num_train_ex={len(self.train_set)} num_val_ex={len(self.val_set)} seed={self.seed}]"
 
-    def _get_statistics(self):
-        train_set = torchvision.datasets.CIFAR10(root='./cifar', train=True, download=True, transform=transforms.ToTensor())
+    def _get_statistics(self, root="./data"):
+        train_set = torchvision.datasets.CIFAR10(root=root, train=True, download=True, transform=transforms.ToTensor())
 
         data = torch.cat([d[0] for d in DataLoader(train_set)])
         return data.mean(dim=[0, 2, 3]), data.std(dim=[0, 2, 3])

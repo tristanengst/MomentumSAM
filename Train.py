@@ -31,6 +31,8 @@ if __name__ == "__main__":
         help="Seed")
     P.add_argument("--num_folds", default=5, type=float,
         help="Number of folds to use for cross validation. We guaruntee that for consecutive seeds that modulo NUM_FOLDS are 0 ... NUM_FOLDS - 1, the validation split is distinct. This is *not* true otherwise.")
+    P.add_argument("--root", default="./data",
+        help="Number of CPU threads for dataloaders.")
 
     # Hardware arguments
     P.add_argument("--device_id", type=int, default=0,
@@ -88,7 +90,8 @@ if __name__ == "__main__":
     dataset = Cifar(batch_size=args.batch_size,
         seed=args.seed,
         num_folds=args.num_folds,
-        threads=args.threads)
+        threads=args.threads,
+        root=root)
 
     log = Log(log_each=10)
     model = WideResNet(args.depth, args.width_factor, args.dropout,
