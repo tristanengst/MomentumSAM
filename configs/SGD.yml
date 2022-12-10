@@ -3,6 +3,8 @@ program: Train.py
 project: NNSAM
 method: grid
 parameters:
+  num_folds:
+    value: 0
   wandb:
     value: online
   opt:

@@ -1,14 +1,16 @@
 name: sam-nnsam
 program: Train.py
-project: MomentumSAM
+project: NNSAM
 method: grid
 parameters:
+  num_folds:
+    value: 5
   seed:
     values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   wandb:
     value: online
   opt:
-    value: ["sam", "nnsam"]
+    values: ["sam", "nnsam"]
   rho:
     values: [.01, .02, .05, .1, .2, .5]
   lr:
@@ -17,4 +19,6 @@ parameters:
     value: 200
   suffix:
     value: CROSS-VALIDATION
+  root:
+    value: $SLURM_TMPDIR
   

@@ -29,7 +29,7 @@ if __name__ == "__main__":
         help="Optional suffix")
     P.add_argument("--seed", default=0, type=int,
         help="Seed")
-    P.add_argument("--num_folds", default=5, type=float,
+    P.add_argument("--num_folds", default=0, type=float,
         help="Number of folds to use for cross validation. We guaruntee that for consecutive seeds that modulo NUM_FOLDS are 0 ... NUM_FOLDS - 1, the validation split is distinct. This is *not* true otherwise.")
     P.add_argument("--root", default="./data",
         help="Number of CPU threads for dataloaders.")

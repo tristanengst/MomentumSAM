@@ -58,7 +58,7 @@ class Cifar:
             # Add one to deal with the case in which the dataset isn't shuffled.
             # We need to set a different seed here so that two seeds that give
             # the same number of reshufflings have the same seed for this code.
-            num_reshufflings = 1 + abs(seed // num_folds)
+            num_reshufflings = 1 + int(abs(seed // num_folds))
             all_idxs = range(len(self.train_set))
             
             random.seed(seed // num_folds)

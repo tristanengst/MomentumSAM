@@ -10,7 +10,7 @@
 #SBATCH --cpus-per-task=12              # Number of cores per task.
 #SBATCH --gres=gpu:v100l:1
 
-#SBATCH --job-name=sgd
+#SBATCH --job-name=sam-nsam
 #SBATCH --output=job_results/_%x_%a.txt
 
 # Below sets the email notification, swap to your email to receive notifications
@@ -38,7 +38,7 @@ export PYTHONUNBUFFERED=1
 export MKL_SERVICE_FORCE_INTEL=1
 
 cd ~/projects/def-keli/tme3/NNSAM
-wandb agent --count 1 tristanengst/NNSAM/p8ser26u
+wandb agent --count 1 tristanengst/NNSAM/8wqzrytn
 
 # Print completion time.
 date
