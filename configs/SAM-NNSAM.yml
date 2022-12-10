@@ -1,0 +1,20 @@
+name: sam-nnsam
+program: Train.py
+project: MomentumSAM
+method: grid
+parameters:
+  seed:
+    values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  wandb:
+    value: online
+  opt:
+    value: ["sam", "nnsam"]
+  rho:
+    values: [.01, .02, .05, .1, .2, .5]
+  lr:
+    value: .1
+  epochs:
+    value: 200
+  suffix:
+    value: CROSS-VALIDATION
+  
