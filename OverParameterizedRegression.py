@@ -15,19 +15,20 @@ from Optimizers import SAM, MSAM, NNSAM
 def compute_eval_loss(model, eval_loader):
     loss = 0
     total = 0
-    for idx,batch in tqdm(enumerate(eval_loader),
-        desc="Validation",
-        dynamic_ncols=True,
-        leave=False):
+    with torch.no_grad():
+        for idx,batch in tqdm(enumerate(eval_loader),
+            desc="Validation",
+            dynamic_ncols=True,
+            leave=False):
 
-        inputs, targets = (b.to(device, non_blocking=True) for b in batch)
-        loss += model(inputs, targets) * batch[0].shape[0]
-        total += batch[0].shape[0]
+            inputs, targets = (b.to(device, non_blocking=True) for b in batch)
+            loss += model(inputs, targets) * batch[0].shape[0]
+            total += batch[0].shape[0]
     return loss.item() / total
 
 def get_name(args):
     suffix = f"-{args.suffix}" if not args.suffix is None else ""
-    return f"matrix-{args.opt}-lr{args.lr}-rho{args.rho}-wd{args.weight_decay}-{args.uid}{suffix}"
+    return f"matrix-{args.opt}-lr{args.lr}-rho{args.rho}-wd{args.weight_decay}-seed{args.seed}-{args.uid}{suffix}"
 
 
 class QuadraticProblemDataset(Dataset):
@@ -115,6 +116,12 @@ def get_args():
     args.uid = wandb.util.generate_id()
     args.threads = min(args.threads, max(1, os.cpu_count() - 4))
     args.sub_problem = "matrix"
+
+    if args.opt == "sgd" and not args.rho == 0:
+        raise ValueError(f"SGD requires rho to be zero.")
+    elif not args.opt == "sgd" and args.rho == 0:
+        raise ValueError(f"SAM-based methods must be run with positive rho.")
+
     return args
 
 if __name__ == "__main__":

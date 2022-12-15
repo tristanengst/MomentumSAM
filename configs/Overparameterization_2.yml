@@ -1,0 +1,38 @@
+name: overparameterization II
+program: OverParameterizedRegression.py
+project: NNSAM
+method: grid
+parameters:
+  seed:
+    values: [0, 1, 2, 3, 4, 5]
+  wandb:
+    value: online
+  opt:
+    values: ["sgd", "sam", "nnsam"]
+  rho:
+    values: [0, .01, .02, .05, .1, .2, .5]
+  lr:
+    value: .01
+  num_steps:
+    value: 20000
+  weight_decay:
+    value: .01
+  suffix:
+    value: CROSS-VALIDATION_II
+  train_ex:
+    value: 1000
+  val_ex:
+    value: 100
+  test_ex:
+    value: 10000
+  x_dim:
+    value: 1201
+  y_dim:
+    value: 6
+  noise_std_frac:
+    value: .01
+  eval_iter:
+    value: 1000
+  log_iter:
+    value: 100
+  
