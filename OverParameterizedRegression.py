@@ -119,9 +119,11 @@ def get_args():
 
 if __name__ == "__main__":
     args = get_args()
-    initialize(args, seed=args.seed)
-    # device = torch.device(f"cuda:{args.device_id}" if torch.cuda.is_available() else "cpu")
-    device = torch.device("cpu")
+    initialize(args, seed=args.seed)'
+    if args.device == "cpu":
+        device = torch.device("cpu")
+    else:
+        device = torch.device(f"cuda:{args.device_id}" if torch.cuda.is_available() else "cpu")
 
     run = wandb.init(project="NNSAM",
         anonymous="allow",
@@ -141,17 +143,17 @@ if __name__ == "__main__":
 
     loader_tr = DataLoader(data_tr,
         batch_size=args.batch_size,
-        pin_memory=True,
+        pin_memory=not args.device == "cpu",
         shuffle=True,
         num_workers=args.threads)
     loader_val = DataLoader(data_val,
         batch_size=args.batch_size,
-        pin_memory=True,
+        pin_memory=not args.device == "cpu",
         shuffle=True,
         num_workers=args.threads)
     loader_te = DataLoader(data_te,
         batch_size=args.batch_size,
-        pin_memory=True,
+        pin_memory=not args.device == "cpu",
         shuffle=True,
         num_workers=args.threads)
 
