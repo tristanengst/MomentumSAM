@@ -1,0 +1,26 @@
+name: sam-nnsam_no_wd
+program: Train.py
+project: NNSAM
+method: grid
+parameters:
+  num_folds:
+    value: 5
+  seed:
+    values: [0, 1, 2, 3, 4]
+  wandb:
+    value: online
+  opt:
+    values: ["sam", "nnsam"]
+  rho:
+    values: [.01, .02, .05, .1, .2, .5]
+  lr:
+    value: .1
+  epochs:
+    value: 200
+  suffix:
+    value: CROSS-VALIDATION
+  root:
+    value: $SLURM_TMPDIR
+  weight_decay:
+    value: 0
+  

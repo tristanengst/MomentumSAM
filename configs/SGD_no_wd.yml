@@ -1,4 +1,4 @@
-name: sgd
+name: sgd_no_wd
 program: Train.py
 project: NNSAM
 method: grid
@@ -14,8 +14,10 @@ parameters:
   epochs:
     value: 400
   seed:
-    values: [0, 1, 2, 3, 4]
+    values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   suffix:
     value: ALL_DATA
   root:
     value: $SLURM_TMPDIR
+  weight_decay:
+    value: 0
