@@ -109,7 +109,7 @@ def get_args():
     P.add_argument("--rho", default=1, type=float)
     P.add_argument("--threads", default=12, type=int,
         help="Number of CPU threads for dataloaders.")
-    P.add_argument("--device_id", type=int, default=0,
+    P.add_argument("--device_id", type=str, default="cpu",
         help="Index of GPU to run on")
     args = P.parse_args()
     args.uid = wandb.util.generate_id()
@@ -120,7 +120,7 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
     initialize(args, seed=args.seed)
-    if args.device == "cpu":
+    if args.device_id == "cpu":
         device = torch.device("cpu")
     else:
         device = torch.device(f"cuda:{args.device_id}" if torch.cuda.is_available() else "cpu")
@@ -143,17 +143,17 @@ if __name__ == "__main__":
 
     loader_tr = DataLoader(data_tr,
         batch_size=args.batch_size,
-        pin_memory=not args.device == "cpu",
+        pin_memory=not args.device_id == "cpu",
         shuffle=True,
         num_workers=args.threads)
     loader_val = DataLoader(data_val,
         batch_size=args.batch_size,
-        pin_memory=not args.device == "cpu",
+        pin_memory=not args.device_id == "cpu",
         shuffle=True,
         num_workers=args.threads)
     loader_te = DataLoader(data_te,
         batch_size=args.batch_size,
-        pin_memory=not args.device == "cpu",
+        pin_memory=not args.device_id == "cpu",
         shuffle=True,
         num_workers=args.threads)
 
