@@ -119,7 +119,7 @@ def get_args():
 
 if __name__ == "__main__":
     args = get_args()
-    initialize(args, seed=args.seed)'
+    initialize(args, seed=args.seed)
     if args.device == "cpu":
         device = torch.device("cpu")
     else:
