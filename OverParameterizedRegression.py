@@ -112,10 +112,19 @@ def get_args():
         help="Number of CPU threads for dataloaders.")
     P.add_argument("--device_id", type=str, default="cpu",
         help="Index of GPU to run on")
+    P.add_argument("--full_batch", default=0, choices=[0, 1], type=int,
+        help="Log every LOG_ITER steps")
+
+
     args = P.parse_args()
     args.uid = wandb.util.generate_id()
     args.threads = min(args.threads, max(1, os.cpu_count() - 4))
     args.sub_problem = "matrix"
+
+    if args.full_batch:
+        args.batch_size = args.train_ex
+        
+
 
     if args.opt == "sgd" and not args.rho == 0:
         raise ValueError(f"SGD requires rho to be zero.")
