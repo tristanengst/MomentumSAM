@@ -4,7 +4,7 @@ project: NNSAM
 method: grid
 parameters:
   seed:
-    values: [0]
+    values: [0, 1, 2, 3, 4, 5, 6, 7, 7, 8, 10]
   wandb:
     value: online
   opt:
@@ -22,7 +22,7 @@ parameters:
   train_ex:
     value: 1000
   val_ex:
-    value: 100
+    value: 200
   test_ex:
     value: 10000
   x_dim:

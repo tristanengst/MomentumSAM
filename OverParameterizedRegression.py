@@ -1,5 +1,6 @@
 
 import argparse
+import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader, Subset
@@ -7,6 +8,8 @@ from tqdm import tqdm
 import wandb
 import os
 import itertools
+import sys
+import random
 
 from utility.step_lr import StepLR
 from utility.initialize import initialize
@@ -30,30 +33,69 @@ def get_name(args):
     suffix = f"-{args.suffix}" if not args.suffix is None else ""
     return f"matrix-{args.opt}-lr{args.lr}-rho{args.rho}-wd{args.weight_decay}-seed{args.seed}-{args.uid}{suffix}"
 
+class CustomLoader:
+
+    def __init__(self, data, batch_size=1, shuffle=False, **kwargs):
+        self.X = data.X.detach().clone().to(device)
+        self.Y = data.Y.detach().clone().to(device)
+        self.bs = batch_size
+        self.shuffle = shuffle
+        self.data_length = self.X.shape[0]
+        self.internal_idx = 0
+
+    def __str__(self): return f"{self.__class__.__name__} [length={self.data_length}]"
+
+    def __len__(self): return int(len(self.X) / self.bs + .5)
+
+    def __iter__(self):
+        if self.shuffle:
+            rand_idxs = random.sample(range(self.data_length), k=self.data_length)
+        else:
+            rand_idxs = torch.arange(self.data_length)
+        
+        X = self.X[rand_idxs, :]
+        Y = self.Y[rand_idxs, :]
+        return iter([(X[idx:min(idx + self.bs, self.data_length)], Y[idx:min(idx + self.bs, self.data_length)]) for idx in range(0, self.data_length, self.bs)])
+
+    
+
 
 class QuadraticProblemDataset(Dataset):
 
-    def __init__(self, x_dim=100, y_dim=100, n=10000, noise_std_frac=.1):
+    def __init__(self, args):
         super(QuadraticProblemDataset, self).__init__()
         # if not x_dim > n:
         #     raise ValueError(f"Matrix dimension (x_dim) was {x_dim} but should be greater than the number of examples {n}")
         
-        self.x_dim = x_dim
-        self.n = n
-        self.y_dim = y_dim
+        self.x_dim = args.x_dim
+        self.n = args.train_ex + args.val_ex + args.test_ex
+        self.y_dim = args.y_dim
+        self.noise_std_frac = args.noise_std_frac
+        self.wd = args.weight_decay
+        self.args = args
         
         # We want AA.T to be full rank, following the paper. This is VERY likely
         # when we generate the matrix as follows, but the while loop throws an error.
-        self.A = torch.randn(x_dim, y_dim, device=device)
+        self.A = torch.zeros(self.x_dim, self.y_dim, device=device)
+        self.A.normal_(generator=torch.Generator().manual_seed(args.seed))
+        
         # while torch.linalg.matrix_rank(self.A @ self.A.transpose(1, 0)) < y_dim:
         #     self.A = torch.randn(x_dim, y_dim, device=device)
 
-        self.X = torch.randn(n, x_dim, device=device)
+        # We break the i.i.d assumption between different splits of data to
+        # create 'strong' distribution shift. Otherwise, with even a few
+        # samples, this tiny setting is enough to allow easy generalization.
+
+        self.X = torch.randn(self.n, self.x_dim, device=device)
         self.Y = self.X @ self.A
 
-        y_std = torch.diag(torch.std(self.Y, dim=0) * noise_std_frac)
+        y_std = torch.diag(torch.std(self.Y, dim=0) * self.noise_std_frac)
         y_noise = torch.randn(*self.Y.shape, device=device) @ y_std
         self.Y = self.Y + y_noise
+
+        # shift = torch.randn(self.y_dim, device=device)
+        # scale = torch.diag(torch.randn(self.y_dim, device=device))
+        # self.Y = self.Y @ scale + shift
 
         self.A = self.A.cpu()
         self.X = self.X.cpu()
@@ -65,18 +107,32 @@ class QuadraticProblemDataset(Dataset):
 
     def __getitem__(self, idx): return self.X[idx], self.Y[idx]
 
-    def compute_loss(self, A):
-        with torch.no_grad():
-            return torch.mean(torch.sum(torch.square(self.X @ A - self.Y), dim=1))
+    def compute_L_mu(self):
+        H = 2 * self.X.transpose(1, 0) @ self.X + torch.eye(self.x_dim, device=device) * self.wd
+        H = self.y_dim * H / self.n
+        eigvals, _ = torch.linalg.eigh(H)
+        L = torch.max(eigvals).item()
+        mu = torch.min(eigvals).item()
+        return L, mu
+
+    @staticmethod
+    def get_subset(dataset, indices):
+        new = QuadraticProblemDataset(dataset.args)
+        new.X = new.X[indices]
+        new.Y = new.Y[indices]
+        new.n = len(indices)
+        return new
+
 
 class QuadraticModel(nn.Module):
 
-    def __init__(self, x_dim=100, y_dim=100):
+    def __init__(self, k=1, x_dim=100, y_dim=100):
         super(QuadraticModel, self).__init__()
-        self.A = nn.Parameter(torch.randn(x_dim, y_dim))
+        self.W1 = nn.Parameter(torch.randn(x_dim, k))
+        self.W2 = nn.Parameter(torch.randn(k, y_dim))
 
     def forward(self, x, y):
-        return torch.mean(torch.sum(torch.square(x @ self.A - y), dim=1))
+        return torch.mean(torch.sum(torch.square(x @ self.W1 @ self.W2 - y), dim=1))
     
     def __repr__(self): return f"{self.__class__.__name__} [x_dim={self.x_dim} y_dim={self.y_dim}]"
 
@@ -106,6 +162,7 @@ def get_args():
         help="SGD Momentum.")
     P.add_argument("--weight_decay", default=0, type=float)
     P.add_argument("--batch_size", default=100, type=int)
+    P.add_argument("--k", default=4, type=int)
     P.add_argument("--opt", choices=["sgd", "sam", "nnsam"], required=True)
     P.add_argument("--rho", default=1, type=float)
     P.add_argument("--threads", default=12, type=int,
@@ -124,12 +181,12 @@ def get_args():
     if args.full_batch:
         args.batch_size = args.train_ex
         
-
-
     if args.opt == "sgd" and not args.rho == 0:
-        raise ValueError(f"SGD requires rho to be zero.")
+        tqdm.write(f"SGD requires rho to be zero.")
+        sys.exit(0)
     elif not args.opt == "sgd" and args.rho == 0:
-        raise ValueError(f"SAM-based methods must be run with positive rho.")
+        tqdm.write(f"SAM-based methods must be run with positive rho.")
+        sys.exit(0)
 
     return args
 
@@ -141,23 +198,18 @@ if __name__ == "__main__":
     else:
         device = torch.device(f"cuda:{args.device_id}" if torch.cuda.is_available() else "cpu")
 
-    run = wandb.init(project="NNSAM",
-        anonymous="allow",
-        config=args,
-        id=args.uid,
-        name=get_name(args),
-        mode=args.wandb)
-
-    data = QuadraticProblemDataset(x_dim=args.x_dim,
-        y_dim=args.y_dim,
-        noise_std_frac=args.noise_std_frac,
-        n=args.train_ex + args.val_ex + args.test_ex)
+    data = QuadraticProblemDataset(args)
     tqdm.write(str(data))
-    data_tr = Subset(data, indices=range(args.train_ex))
-    data_val = Subset(data, indices=range(args.train_ex, args.val_ex + args.train_ex))
-    data_te = Subset(data, indices=range(args.val_ex + args.train_ex, args.train_ex + args.val_ex + args.test_ex))
+    data_tr = QuadraticProblemDataset.get_subset(data, indices=range(args.train_ex))
+    data_val = QuadraticProblemDataset.get_subset(data, indices=range(args.train_ex, args.val_ex + args.train_ex))
+    data_te = QuadraticProblemDataset.get_subset(data, indices=range(args.val_ex + args.train_ex, args.train_ex + args.val_ex + args.test_ex))
 
-    loader_tr = DataLoader(data_tr,
+    if args.lr == -1:
+        L, _ = data.compute_L_mu()
+        args.lr = 2 / (L + args.rho * L ** 2) - 1e-4
+        tqdm.write(f"Choosing LR={args.lr}")
+
+    loader_tr = CustomLoader(data_tr,
         batch_size=args.batch_size,
         pin_memory=not args.device_id == "cpu",
         shuffle=True,
@@ -173,7 +225,7 @@ if __name__ == "__main__":
         shuffle=True,
         num_workers=args.threads)
 
-    model = QuadraticModel(x_dim=args.x_dim, y_dim=args.y_dim).to(device)
+    model = QuadraticModel(k=args.k, x_dim=args.x_dim, y_dim=args.y_dim).to(device)
     base_optimizer = torch.optim.SGD
 
     if args.opt == "sgd":
@@ -194,34 +246,76 @@ if __name__ == "__main__":
     passes_over_dataset = args.num_steps // len(loader_tr)
     args.num_steps = passes_over_dataset * len(loader_tr)
     chain_loader = itertools.chain(*[loader_tr] * passes_over_dataset)
-    scheduler = StepLR(optimizer, args.lr, passes_over_dataset)
+    scheduler = StepLR(optimizer, args.lr,  args.num_steps)
+
+    run = wandb.init(project="NNSAM",
+        anonymous="allow",
+        config=args,
+        id=args.uid,
+        name=get_name(args),
+        mode=args.wandb)
 
     tqdm.write(str(args))
+    
 
-    for idx,batch in tqdm(enumerate(chain_loader),
-        desc="Iterations",
-        dynamic_ncols=True,
-        total=args.num_steps):
-
+    gradient_evals = 0
+    if args.full_batch:
+        batch = (data_tr.X, data_tr.Y)
         inputs, targets = (b.to(device, non_blocking=True) for b in batch)
+        for idx in tqdm(range(args.num_steps),
+            desc="Iterations",
+            dynamic_ncols=True,
+            total=args.num_steps):
 
-        # first forward-backward step
-        loss = model(inputs, targets)
-        loss.backward()
-        optimizer.first_step(zero_grad=True)
+            # first forward-backward step
+            loss = model(inputs, targets)
+            loss.backward()
+            optimizer.first_step(zero_grad=True)
 
-        # second forward-backward step
-        _ = model(inputs, targets).backward()
-        optimizer.second_step(zero_grad=True)
+            # second forward-backward step
+            _ = model(inputs, targets).backward()
+            optimizer.second_step(zero_grad=True)
 
-        if idx % args.eval_iter == 0 or idx == args.num_steps - 1:
-            loss_val = compute_eval_loss(model, loader_val)
-            loss_te = compute_eval_loss(model, loader_te)
-            tqdm.write(f"Step {idx}/{args.num_steps} - loss_tr={loss.item():.5f} loss_val={loss_val:.5f} loss_te={loss_te:.5f}")
-            wandb.log({"cur_step": idx, "loss/tr": loss, "loss/te": loss_te, "loss/val": loss_val})
+            gradient_evals += 1 if args.opt == "sgd" else 2
 
-        elif idx % args.log_iter == 0 or idx == args.num_steps - 1:
-            tqdm.write(f"Step {idx}/{args.num_steps} - loss_tr={loss.item():.5f}")
-            wandb.log({"cur_step": idx, "loss/tr": loss})
+            if idx % args.eval_iter == 0 or idx == args.num_steps - 1:
+                loss_val = compute_eval_loss(model, loader_val)
+                loss_te = compute_eval_loss(model, loader_te)
+                tqdm.write(f"Step {idx}/{args.num_steps} - lr={scheduler.lr():.5e} loss_tr={loss.item():.10e} loss_val={loss_val:.10e} loss_te={loss_te:.10e}")
+                wandb.log({"gradient_evals": gradient_evals, "loss/tr": loss, "loss/te": loss_te, "loss/val": loss_val, "lr": scheduler.lr()})
 
-        scheduler(idx // passes_over_dataset)
+            elif idx % args.log_iter == 0 or idx == args.num_steps - 1:
+                tqdm.write(f"Step {idx}/{args.num_steps} - lr={scheduler.lr():.5e} loss_tr={loss.item():.10e}")
+                wandb.log({"gradient_evals": gradient_evals, "loss/tr": loss,  "lr": scheduler.lr()})
+
+            scheduler(idx)
+    else:
+        for idx,batch in tqdm(enumerate(chain_loader),
+            desc="Iterations",
+            dynamic_ncols=True,
+            total=args.num_steps):
+
+            inputs, targets = (b.to(device, non_blocking=True) for b in batch)
+
+            # first forward-backward step
+            loss = model(inputs, targets)
+            loss.backward()
+            optimizer.first_step(zero_grad=True)
+
+            # second forward-backward step
+            _ = model(inputs, targets).backward()
+            optimizer.second_step(zero_grad=True)
+
+            gradient_evals += 1 if args.opt == "sgd" else 2
+
+            if idx % args.eval_iter == 0 or idx == args.num_steps - 1:
+                loss_val = compute_eval_loss(model, loader_val)
+                loss_te = compute_eval_loss(model, loader_te)
+                tqdm.write(f"Step {idx}/{args.num_steps} - lr={scheduler.lr():.5e} loss_tr={loss.item():.10e} loss_val={loss_val:.10e} loss_te={loss_te:.10e}")
+                wandb.log({"gradient_evals": gradient_evals, "loss/tr": loss, "loss/te": loss_te, "loss/val": loss_val, "lr": scheduler.lr()})
+
+            elif idx % args.log_iter == 0 or idx == args.num_steps - 1:
+                tqdm.write(f"Step {idx}/{args.num_steps} - lr={scheduler.lr():.5e} loss_tr={loss.item():.10e}")
+                wandb.log({"gradient_evals": gradient_evals, "loss/tr": loss,  "lr": scheduler.lr()})
+
+            scheduler(idx)
